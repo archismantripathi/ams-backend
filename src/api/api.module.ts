@@ -1,8 +1,10 @@
 import { Module } from '@nestjs/common';
+import { APP_GUARD } from '@nestjs/core';
 import { MongooseModule } from '@nestjs/mongoose';
 
 import { UserModule } from './user/user.module';
 import { DeviceModule } from './device/device.module';
+import { AuthGuard } from 'src/auth/guard/auth.guard';
 
 @Module({
   imports: [
@@ -12,5 +14,6 @@ import { DeviceModule } from './device/device.module';
     UserModule,
     DeviceModule,
   ],
+  providers: [{ provide: APP_GUARD, useClass: AuthGuard }],
 })
 export class ApiModule {}

@@ -8,6 +8,7 @@ import {
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { createHmac } from 'crypto';
 
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -42,10 +43,13 @@ export class UserRepository {
   }
 
   async createUser(createUserDto: CreateUserDto) {
+    const key = 'key for now';
+    const hasher = createHmac('sha256', key);
+
     const newUser = new this.userModel({
       username: createUserDto.username,
       name:     createUserDto.name,
-      password: createUserDto.password,
+      password: await hasher.update(createUserDto.password).digest('base64'),
       admin:    createUserDto.admin,
     });
     
@@ -58,6 +62,9 @@ export class UserRepository {
   }
 
   async updateUser(username: string,updateUserDto: UpdateUserDto) {
+    const key = 'key for now';
+    const hasher = createHmac('sha256', key);
+
     const user = await this.userModel.findOne({ username: username }).exec();
     if(user) {
       if(updateUserDto.username) {
@@ -76,7 +83,7 @@ export class UserRepository {
         user.name = updateUserDto.name;
       }
       if(updateUserDto.password) {
-        user.password = updateUserDto.password;
+        user.password = await hasher.update(updateUserDto.password).digest('base64');
       }
       if(updateUserDto.admin) {
         user.admin = updateUserDto.admin;
