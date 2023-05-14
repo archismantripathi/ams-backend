@@ -10,13 +10,4 @@ export class AuthController {
   signIn(@Body() signInDto: SignInDto) {
     return this.authService.signIn(signInDto);
   }
-
-  @Post('validate')
-  validate(@Body() data: { token: string }) {
-    if (data.token) {
-      return this.authService.verifyToken(data.token);
-    } else {
-      return false;
-    }
-  }
 }
