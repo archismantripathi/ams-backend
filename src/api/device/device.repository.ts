@@ -21,9 +21,12 @@ export class DeviceRepository {
     const devices = await this.deviceModel.find().exec();
 
     return devices.map((device) => ({
-      deviceId: device.deviceId,
-      deviceName: device.deviceName,
-      deviceStatus: device.deviceStatus,
+      deviceId:         device.deviceId,
+      deviceName:       device.deviceName,
+      deviceType:       device.deviceType,
+      deviceConnector:  device.deviceConnector,
+      deviceIp:         device.deviceIp,
+      deviceStatus:     device.deviceStatus,
     }));
   }
 
@@ -32,9 +35,12 @@ export class DeviceRepository {
 
     if (device) {
       return {
-        deviceId: device.deviceId,
-        deviceName: device.deviceName,
-        deviceStatus: device.deviceStatus,
+        deviceId:         device.deviceId,
+        deviceName:       device.deviceName,
+        deviceType:       device.deviceType,
+        deviceConnector:  device.deviceConnector,
+        deviceIp:         device.deviceIp,
+        deviceStatus:     device.deviceStatus,
       };
     } else {
       throw new NotFoundException('Device Not Found.');
@@ -44,9 +50,12 @@ export class DeviceRepository {
   async createDevice(createDeviceDto: CreateDeviceDto) {
 
     const newDevice = new this.deviceModel({
-      deviceId: createDeviceDto.deviceId,
-      deviceName: createDeviceDto.deviceName,
-      deviceStatus: createDeviceDto.deviceStatus,
+      deviceId:         createDeviceDto.deviceId,
+      deviceName:       createDeviceDto.deviceName,
+      deviceType:       createDeviceDto.deviceType,
+      deviceConnector:  createDeviceDto.deviceConnector,
+      deviceIp:         createDeviceDto.deviceIp,
+      deviceStatus:     createDeviceDto.deviceStatus,
     });
 
     try {
@@ -58,31 +67,19 @@ export class DeviceRepository {
   }
 
   async updateDevice(deviceId: string, updateDeviceDto: UpdateDeviceDto) {
-
     const device = await this.deviceModel.findOne({ deviceId: deviceId }).exec();
     if (device) {
-      if (updateDeviceDto.deviceId) {
-        if (device.deviceId != updateDeviceDto.deviceId) {
-          const checkNewDeviceName = await this.deviceModel
-            .findOne({
-              deviceId: updateDeviceDto.deviceId,
-            })
-            .exec();
-          if (checkNewDeviceName) {
-            throw new HttpException(
-              'DevicedeviceName Must Be Unique.',
-              HttpStatus.CONFLICT,
-            );
-          } else {
-            device.deviceId = updateDeviceDto.deviceId;
-          }
-        }
-      }
       if (updateDeviceDto.deviceName) {
         device.deviceName = updateDeviceDto.deviceName;
       }
-      if (updateDeviceDto) {
-  
+      if (updateDeviceDto.deviceConnector) {
+        device.deviceConnector = updateDeviceDto.deviceConnector;
+      }
+      if (updateDeviceDto.deviceType) {
+        device.deviceType = updateDeviceDto.deviceType;
+      }
+      if (updateDeviceDto.deviceIp) {
+        device.deviceIp = updateDeviceDto.deviceIp;
       }
       if (updateDeviceDto.deviceStatus) {
         device.deviceStatus = updateDeviceDto.deviceStatus;
