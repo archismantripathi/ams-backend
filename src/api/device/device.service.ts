@@ -1,26 +1,29 @@
 import { Injectable } from '@nestjs/common';
 import { CreateDeviceDto } from './dto/create-device.dto';
 import { UpdateDeviceDto } from './dto/update-device.dto';
+import { DeviceRepository } from './device.repository';
 
 @Injectable()
 export class DeviceService {
-  create(createDeviceDto: CreateDeviceDto) {
-    return 'This action adds a new device';
+  constructor(private readonly deviceRepository: DeviceRepository) {}
+
+  async getAllDevice() {
+    return { data: await this.deviceRepository.getAllDevice() };
   }
 
-  findAll() {
-    return `This action returns all device`;
+  async getDevice(deviceId: string) {
+    return { data: await this.deviceRepository.getDevice(deviceId) };
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} device`;
+  async createDevice(createDeviceDto: CreateDeviceDto) {
+    return this.deviceRepository.createDevice(createDeviceDto);
   }
 
-  update(id: number, updateDeviceDto: UpdateDeviceDto) {
-    return `This action updates a #${id} device`;
+  async updateDevice(deviceId: string, updateDeviceDto: UpdateDeviceDto) {
+    return this.deviceRepository.updateDevice(deviceId, updateDeviceDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} device`;
+  async deleteDevice(deviceId: string) {
+    return this.deviceRepository.deleteDevice(deviceId);
   }
 }

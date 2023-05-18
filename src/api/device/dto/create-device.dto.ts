@@ -1,1 +1,22 @@
-export class CreateDeviceDto {}
+import { IsBoolean, IsNotEmpty, IsString } from 'class-validator';
+
+export class CreateDeviceDto {
+  @IsString()
+  @IsNotEmpty()
+  deviceId: string;
+  @IsString()
+  @IsNotEmpty()
+  deviceName: string;
+  @IsString()
+  @IsNotEmpty()
+  deviceType: string;
+  @IsString()
+  @IsNotEmpty()
+  deviceConnector: string;
+  @IsString()
+  @IsNotEmpty()
+  deviceIp: string;
+  @IsBoolean()
+  @IsNotEmpty()
+  deviceStatus: boolean;
+}

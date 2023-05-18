@@ -15,28 +15,31 @@ import { UpdateDeviceDto } from './dto/update-device.dto';
 export class DeviceController {
   constructor(private readonly deviceService: DeviceService) {}
 
-  @Post()
-  create(@Body() createDeviceDto: CreateDeviceDto) {
-    return this.deviceService.create(createDeviceDto);
-  }
-
   @Get()
-  findAll() {
-    return this.deviceService.findAll();
+  getAllDevice() {
+    return this.deviceService.getAllDevice();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.deviceService.findOne(+id);
+  @Get(':deviceId')
+  getDevice(@Param('deviceId') deviceId: string) {
+    return this.deviceService.getDevice(deviceId);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateDeviceDto: UpdateDeviceDto) {
-    return this.deviceService.update(+id, updateDeviceDto);
+  @Post()
+  createDevice(@Body() createDeviceDto: CreateDeviceDto) {
+    return this.deviceService.createDevice(createDeviceDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.deviceService.remove(+id);
+  @Patch(':deviceId')
+  updateDevice(
+    @Param('deviceId') deviceId: string,
+    @Body() updateDeviceDto: UpdateDeviceDto,
+  ) {
+    return this.deviceService.updateDevice(deviceId, updateDeviceDto);
+  }
+
+  @Delete(':deviceId')
+  deleteDevice(@Param('deviceId') deviceId: string) {
+    return this.deviceService.deleteDevice(deviceId);
   }
 }
