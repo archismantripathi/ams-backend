@@ -21,12 +21,13 @@ export class DeviceRepository {
     const devices = await this.deviceModel.find().exec();
 
     return devices.map((device) => ({
-      deviceId:         device.deviceId,
-      deviceName:       device.deviceName,
-      deviceType:       device.deviceType,
-      deviceConnector:  device.deviceConnector,
-      deviceIp:         device.deviceIp,
-      deviceStatus:     device.deviceStatus,
+      deviceId:          device.deviceId,
+      deviceName:        device.deviceName,
+      deviceDescription: device.deviceDescription,
+      deviceType:        device.deviceType,
+      deviceConnector:   device.deviceConnector,
+      deviceIp:          device.deviceIp,
+      deviceStatus:      device.deviceStatus,
     }));
   }
 
@@ -35,12 +36,13 @@ export class DeviceRepository {
 
     if (device) {
       return {
-        deviceId:         device.deviceId,
-        deviceName:       device.deviceName,
-        deviceType:       device.deviceType,
-        deviceConnector:  device.deviceConnector,
-        deviceIp:         device.deviceIp,
-        deviceStatus:     device.deviceStatus,
+        deviceId:          device.deviceId,
+        deviceName:        device.deviceName,
+        deviceDescription: device.deviceDescription,
+        deviceType:        device.deviceType,
+        deviceConnector:   device.deviceConnector,
+        deviceIp:          device.deviceIp,
+        deviceStatus:      device.deviceStatus,
       };
     } else {
       throw new NotFoundException('Device Not Found.');
