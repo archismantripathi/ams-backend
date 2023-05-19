@@ -50,12 +50,13 @@ export class DeviceRepository {
   async createDevice(createDeviceDto: CreateDeviceDto) {
 
     const newDevice = new this.deviceModel({
-      deviceId:         createDeviceDto.deviceId,
-      deviceName:       createDeviceDto.deviceName,
-      deviceType:       createDeviceDto.deviceType,
-      deviceConnector:  createDeviceDto.deviceConnector,
-      deviceIp:         createDeviceDto.deviceIp,
-      deviceStatus:     createDeviceDto.deviceStatus,
+      deviceId:          createDeviceDto.deviceId,
+      deviceName:        createDeviceDto.deviceName,
+      deviceDescription: createDeviceDto.deviceDescription,
+      deviceType:        createDeviceDto.deviceType,
+      deviceConnector:   createDeviceDto.deviceConnector,
+      deviceIp:          createDeviceDto.deviceIp,
+      deviceStatus:      createDeviceDto.deviceStatus,
     });
 
     try {
@@ -75,14 +76,14 @@ export class DeviceRepository {
       if (updateDeviceDto.deviceConnector) {
         device.deviceConnector = updateDeviceDto.deviceConnector;
       }
+      if (updateDeviceDto.deviceDescription) {
+        device.deviceDescription = updateDeviceDto.deviceDescription;
+      }
       if (updateDeviceDto.deviceType) {
         device.deviceType = updateDeviceDto.deviceType;
       }
       if (updateDeviceDto.deviceIp) {
         device.deviceIp = updateDeviceDto.deviceIp;
-      }
-      if (updateDeviceDto.deviceStatus) {
-        device.deviceStatus = updateDeviceDto.deviceStatus;
       }
       device.save();
       throw new HttpException('Device Updated.', HttpStatus.ACCEPTED);

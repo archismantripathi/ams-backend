@@ -9,6 +9,9 @@ export class CreateDeviceDto {
   deviceName: string;
   @IsString()
   @IsNotEmpty()
+  deviceDescription: string;
+  @IsString()
+  @IsNotEmpty()
   deviceType: string;
   @IsString()
   @IsNotEmpty()
