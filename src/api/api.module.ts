@@ -5,7 +5,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { UserModule } from './user/user.module';
 import { DeviceModule } from './device/device.module';
 import { AuthGuard } from 'src/auth/guard/auth.guard';
-import { ExtensionsController } from './extensions/extensions.controller';
+import { ExtensionModule } from './extension/extension.module';
+import { ExtensionModule } from './extension/extension.module';
 
 @Module({
   imports: [
@@ -14,8 +15,8 @@ import { ExtensionsController } from './extensions/extensions.controller';
     }),
     UserModule,
     DeviceModule,
+    ExtensionModule,
   ],
   providers: [{ provide: APP_GUARD, useClass: AuthGuard }],
-  controllers: [ExtensionsController],
 })
 export class ApiModule {}
