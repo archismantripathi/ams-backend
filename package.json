@@ -1,8 +1,8 @@
 {
   "name": "ams",
-  "version": "0.9.4a",
-  "description": "",
-  "author": "",
+  "version": "1.0.0b",
+  "description": "Automation Management System",
+  "author": "Archisman Tripathi",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {

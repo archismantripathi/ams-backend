@@ -10,7 +10,7 @@ import { ExtensionModule } from './extension/extension.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://127.0.0.1:27017/test-nest-1', {
+    MongooseModule.forRoot('mongodb://127.0.0.1:27017/ams-beta-v1', {
       useNewUrlParser: true,
     }),
     UserModule,
