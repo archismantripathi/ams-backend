@@ -10,6 +10,7 @@ import {
 } from '@nestjs/common';
 import { CreateDeviceDto } from './dto/createDevice.dto';
 import { UpdateDeviceDto } from './dto/updateDevice.dto';
+import { SetDeviceDto } from './dto/setDevice.dto';
 
 @Controller('api/extension/0001')
 export class DemoExtensionController {
@@ -18,6 +19,14 @@ export class DemoExtensionController {
   @Get(':deviceId')
   getStatus(@Param('deviceId') deviceId: string) {
     return this.demoExtensionService.getStatus(deviceId);
+  }
+
+  @Patch('set/:deviceId')
+  setDevice(
+    @Param('deviceId') deviceId: string,
+    @Body() setDeviceDto: SetDeviceDto,
+  ) {
+    return this.demoExtensionService.setDevice(deviceId, setDeviceDto);
   }
 
   @Post(':deviceType')

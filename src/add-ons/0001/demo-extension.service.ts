@@ -14,16 +14,42 @@ import { UpdateDeviceDto } from './dto/updateDevice.dto';
 
 import { Device } from '../../models/device.model';
 import { C0001 } from './local-model/C0001.model';
+import { SetDeviceDto } from './dto/setDevice.dto';
 
 @Injectable()
 export class DemoExtensionService {
   constructor(
     @InjectModel('Device') private readonly deviceModel: Model<Device>,
-    @InjectModel('C0001') private readonly C0001Model: Model<C0001>,
+    @InjectModel('C0001') private readonly c0001Model: Model<C0001>,
   ) {}
 
-  getStatus(deviceId: string) {
-    return true;
+  async getStatus(deviceId: string) {
+    const res = await this.c0001Model
+      .findOne({ deviceId: deviceId })
+      .exec();
+    if(res) {
+      return res.data;
+    } else {
+      throw new NotFoundException('Device Not Found.');
+    }
+  }
+
+  async setDevice(deviceId: string, setDeviceDto: SetDeviceDto) {
+    const res = await this.c0001Model
+      .findOne({ deviceId: deviceId })
+      .exec();
+    if(res) {
+      res.data.state = setDeviceDto.state;
+      res.data.intensity = setDeviceDto.intensity;
+      try {
+        res.save();
+      } catch (error) {
+        throw new HttpException('⚠️ Try Again.', HttpStatus.EXPECTATION_FAILED);
+      }
+      throw new HttpException('✅ State Change Success.', HttpStatus.ACCEPTED);
+    } else {
+      throw new NotFoundException('Device Not Found.');
+    }
   }
 
   async updateDevice(deviceId: string, updateDeviceDto: UpdateDeviceDto) {
@@ -64,7 +90,7 @@ export class DemoExtensionService {
       console.log(error);
       throw new NotAcceptableException('Device Already Exist.');
     }
-    const newC0001Entry = new this.C0001Model({
+    const newC0001Entry = new this.c0001Model({
       deviceId:          createDeviceDto.deviceId,
       deviceType:        deviceType,
       data: {
@@ -93,7 +119,7 @@ export class DemoExtensionService {
     } else if (result.deletedCount == 0) {
       throw new NotFoundException('⚠️ Device Not Found.');
     }
-    const resultC0001 = await this.C0001Model
+    const resultC0001 = await this.c0001Model
       .deleteOne({ deviceId: deviceId })
       .exec();
 
