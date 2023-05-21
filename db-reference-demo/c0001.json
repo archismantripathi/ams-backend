@@ -1,0 +1,23 @@
+[{
+  "_id": {
+    "$oid": "646a584e9e35824d0651b6ca"
+  },
+  "deviceId": "1684690956278",
+  "deviceType": "Terminal",
+  "data": {
+    "state": false,
+    "intensity": 100
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "646a58869e35824d0651b6d9"
+  },
+  "deviceId": "1684691031631",
+  "deviceType": "Terminal",
+  "data": {
+    "state": false,
+    "intensity": 100
+  },
+  "__v": 0
+}]

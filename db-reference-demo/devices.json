@@ -1,0 +1,25 @@
+[{
+  "_id": {
+    "$oid": "646a584e9e35824d0651b6c8"
+  },
+  "deviceId": "1684690956278",
+  "deviceName": "Light Bulb",
+  "deviceDescription": "Demo light bulb.",
+  "deviceType": "Terminal",
+  "deviceConnector": "0001",
+  "deviceIp": "127.0.0.1:3000",
+  "deviceStatus": true,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "646a58869e35824d0651b6d7"
+  },
+  "deviceId": "1684691031631",
+  "deviceName": "Another Light Bulb",
+  "deviceDescription": "Another virtual light bulb",
+  "deviceType": "Terminal",
+  "deviceConnector": "0001",
+  "deviceIp": "127.0.0.1:3000",
+  "deviceStatus": true,
+  "__v": 0
+}]

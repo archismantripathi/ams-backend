@@ -1,0 +1,9 @@
+[{
+  "_id": {
+    "$oid": "6468f6c763cdc453ca57d866"
+  },
+  "extensionId": "0001",
+  "extensionName": "Demo Extension",
+  "extensionDescription": "Provides dummy connector",
+  "__v": 0
+}]
