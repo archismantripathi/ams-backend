@@ -1,6 +1,15 @@
 import { DemoExtensionService } from './demo-extension.service';
-import { Body, Controller, Get, Param, Patch } from '@nestjs/common';
-import { UpdateDeviceDataDto } from './dto/updateDeviceData.dto';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
+import { CreateDeviceDto } from './dto/createDevice.dto';
+import { UpdateDeviceDto } from './dto/updateDevice.dto';
 
 @Controller('api/extension/0001')
 export class DemoExtensionController {
@@ -11,14 +20,24 @@ export class DemoExtensionController {
     return this.demoExtensionService.getStatus(deviceId);
   }
 
+  @Post(':deviceType')
+  newDevice(
+    @Param('deviceType') deviceType: string,
+    @Body() createDeviceDto: CreateDeviceDto,
+  ) {
+    return this.demoExtensionService.addDevice(deviceType, createDeviceDto);
+  }
+
   @Patch(':deviceId')
   updateDevice(
     @Param('deviceId') deviceId: string,
-    @Body() updateDeviceDataDto: UpdateDeviceDataDto,
+    @Body() updateDeviceDto: UpdateDeviceDto,
   ) {
-    return this.demoExtensionService.updateDevice(
-      deviceId,
-      updateDeviceDataDto,
-    );
+    return this.demoExtensionService.updateDevice(deviceId, updateDeviceDto);
+  }
+
+  @Delete(':deviceId')
+  deleteDevice(@Param('deviceId') deviceId: string) {
+    return this.demoExtensionService.deleteDevice(deviceId);
   }
 }

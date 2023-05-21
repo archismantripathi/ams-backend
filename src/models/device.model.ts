@@ -4,7 +4,7 @@ import * as mongoose from 'mongoose';
 export const DeviceSchema = new mongoose.Schema({
   deviceId:          { type: String,  required: true, unique: true },
   deviceName:        { type: String,  required: true },
-  deviceDescription: { type: String,  required: true },
+  deviceDescription: { type: String },
   deviceType:        { type: String,  required: true },
   deviceConnector:   { type: String,  required: true },
   deviceIp:          { type: String,  required: true },
