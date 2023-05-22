@@ -16,6 +16,11 @@ import { SetDeviceDto } from './dto/setDevice.dto';
 export class DemoExtensionController {
   constructor(private readonly demoExtensionService: DemoExtensionService) {}
 
+  @Get()
+  getAllLocal() {
+    return this.demoExtensionService.getAllLocal();
+  }
+
   @Get(':deviceId')
   getStatus(@Param('deviceId') deviceId: string) {
     return this.demoExtensionService.getStatus(deviceId);

@@ -23,12 +23,24 @@ export class DemoExtensionService {
     @InjectModel('C0001') private readonly c0001Model: Model<C0001>,
   ) {}
 
+  async getAllLocal() {
+    const devices = await this.c0001Model.find().exec();
+
+    return devices.map((device) => ({
+      deviceId:          device.deviceId,
+      deviceType:        device.deviceType,
+      data: {
+        state: device.data.state,
+        intensity: device.data.intensity
+      }
+    }));
+  }
   async getStatus(deviceId: string) {
     const res = await this.c0001Model
       .findOne({ deviceId: deviceId })
       .exec();
     if(res) {
-      return res.data;
+      return {data: res.data};
     } else {
       throw new NotFoundException('Device Not Found.');
     }
