@@ -7,16 +7,16 @@ import { RoutineRepository } from './routine.repository';
 export class RoutineService {
   constructor(private readonly routineRepository: RoutineRepository) {}
 
-  createRoutine(createRoutineDto: CreateRoutineDto) {
+  async createRoutine(createRoutineDto: CreateRoutineDto) {
     return this.routineRepository.createRoutine(createRoutineDto);
   }
 
-  getAllRoutine() {
-    return this.routineRepository.getAllRoutine();
+  async getAllRoutine() {
+    return { data: await this.routineRepository.getAllRoutine() };
   }
 
-  getRoutine(routineId: string) {
-    return this.routineRepository.getRoutine(routineId);
+  async getRoutine(routineId: string) {
+    return { data: await this.routineRepository.getRoutine(routineId) };
   }
 
   updateRoutine(routineId: string, updateRoutineDto: UpdateRoutineDto) {

@@ -14,6 +14,7 @@ export class RoutineRepository {
 
   async getAllRoutine() {
     const routines = await this.routineModel.find().exec();
+    
     return routines.map((routine) => ({
       routineId:          routine.routineId,
       routineName:        routine.routineName,
