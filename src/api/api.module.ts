@@ -7,6 +7,7 @@ import { UserModule } from './user/user.module';
 import { DeviceModule } from './device/device.module';
 import { AuthGuard } from 'src/auth/guard/auth.guard';
 import { ExtensionModule } from './extension/extension.module';
+import { RoutineModule } from './routine/routine.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { ExtensionModule } from './extension/extension.module';
     UserModule,
     DeviceModule,
     ExtensionModule,
+    RoutineModule,
   ],
   providers: [{ provide: APP_GUARD, useClass: AuthGuard }],
 })
