@@ -99,9 +99,8 @@ export class RoutineRepository {
       if ( updateRoutineDto.endTime ) {
         routine.trigger.endTime = updateRoutineDto.endTime;
       }
-      if ( updateRoutineDto.state ) {
-        routine.routineData.state = updateRoutineDto.state;
-      }
+      //check later
+      routine.routineData.state = updateRoutineDto.state;
       if ( updateRoutineDto.intensity ) {
         routine.routineData.intensity = updateRoutineDto.intensity;
       }

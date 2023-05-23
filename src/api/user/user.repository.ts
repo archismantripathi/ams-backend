@@ -85,9 +85,8 @@ export class UserRepository {
       if(updateUserDto.password) {
         user.password = await hasher.update(updateUserDto.password).digest('base64');
       }
-      if(updateUserDto.admin) {
-        user.admin = updateUserDto.admin;
-      }
+      //check later
+      user.admin = updateUserDto.admin;
       user.save();
       throw new HttpException('User Updated.', HttpStatus.ACCEPTED);
     } else {
