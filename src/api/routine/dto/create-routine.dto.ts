@@ -15,12 +15,12 @@ export class CreateRoutineDto {
   @IsString()
   @IsNotEmpty()
   routineDevice: string;
-  @IsNumber()
+  @IsString()
   @IsNotEmpty()
-  startTime: number;
-  @IsNumber()
+  startTime: string;
+  @IsString()
   @IsNotEmpty()
-  endTime: number;
+  endTime: string;
   @IsBoolean()
   @IsNotEmpty()
   state: boolean;

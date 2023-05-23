@@ -8,8 +8,8 @@ export const RoutineSchema = new mongoose.Schema({
   routineConnector:   { type: String,  required: true },
   routineDevice:      { type: String,  required: true },
   trigger:     {
-    startTime: { type: Number,    required: true },
-    endTime:   { type: Number,    required: true },
+    startTime: { type: String,    required: true },
+    endTime:   { type: String,    required: true },
   },
   routineData: { 
     state:     { type: Boolean, required: true },
@@ -29,8 +29,8 @@ export interface Routine extends mongoose.Document {
   routineConnector:   string ;
   routineDevice:      string ;
   trigger:     {
-    startTime: number,
-    endTime:   number,
+    startTime: string,
+    endTime:   string,
   };
   routineData: { 
     state:     boolean,
