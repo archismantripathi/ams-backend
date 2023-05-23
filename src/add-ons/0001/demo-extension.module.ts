@@ -3,7 +3,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { DemoExtensionService } from './demo-extension.service';
 import { DemoExtensionController } from './demo-extension.controller';
 import { C0001Schema } from './local-model/C0001.model';
-import { DeviceSchema } from 'src/models/device.model';
+import { DeviceSchema } from '../../models/device.model';
 
 @Module({
   imports: [
