@@ -1,0 +1,19 @@
+[{
+  "_id": {
+    "$oid": "646d769eddf502873e6804a3"
+  },
+  "routineId": "1684895373893",
+  "routineName": "Test Routine",
+  "routineDescription": "",
+  "routineConnector": "0001",
+  "routineDevice": "1684690956278",
+  "trigger": {
+    "startTime": "05:05 AM",
+    "endTime": "06:04 PM"
+  },
+  "routineData": {
+    "state": true,
+    "intensity": 100
+  },
+  "__v": 0
+}]
